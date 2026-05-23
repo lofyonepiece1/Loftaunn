@@ -14,7 +14,7 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1a0033 0%, #4d0099 50%, #ff00ff 100%);
-            color: #e0e0e0;
+            color: #ffffff;
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -26,20 +26,27 @@
             width: 100%;
             background: rgba(26, 0, 51, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 0, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 0, 255, 0.3);
             z-index: 1000;
             padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 4px 30px rgba(255, 0, 255, 0.1);
         }
 
         nav .logo {
             font-size: 1.8rem;
             font-weight: bold;
             color: #ff00ff;
-            text-shadow: 0 0 20px rgba(255, 0, 255, 0.6);
+            text-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
             letter-spacing: 2px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { text-shadow: 0 0 20px rgba(255, 0, 255, 0.8); }
+            50% { text-shadow: 0 0 40px rgba(255, 0, 255, 1); }
         }
 
         nav ul {
@@ -49,16 +56,18 @@
         }
 
         nav a {
-            color: #e0e0e0;
+            color: #ffffff;
             text-decoration: none;
             font-size: 0.95rem;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             position: relative;
+            font-weight: 500;
         }
 
         nav a:hover {
             color: #ff00ff;
-            text-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
+            text-shadow: 0 0 15px rgba(255, 0, 255, 0.8);
+            transform: translateY(-3px);
         }
 
         nav a::after {
@@ -67,9 +76,10 @@
             bottom: -5px;
             left: 0;
             width: 0;
-            height: 2px;
+            height: 3px;
             background: linear-gradient(90deg, #ff00ff, #00d4ff);
-            transition: width 0.3s ease;
+            transition: width 0.4s ease;
+            box-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
         }
 
         nav a:hover::after {
@@ -83,7 +93,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, rgba(255, 0, 255, 0.1) 0%, rgba(77, 0, 153, 0.1) 100%);
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.15) 0%, rgba(77, 0, 153, 0.15) 100%);
             position: relative;
             overflow: hidden;
         }
@@ -93,17 +103,22 @@
             position: absolute;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(255, 0, 255, 0.2) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 0, 255, 0.3) 0%, transparent 70%);
             border-radius: 50%;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            animation: float 6s ease-in-out infinite;
+            animation: float 8s ease-in-out infinite, glow 4s ease-in-out infinite;
         }
 
         @keyframes float {
             0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
-            50% { transform: translate(-50%, -50%) translateY(30px); }
+            50% { transform: translate(-50%, -50%) translateY(40px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(255, 0, 255, 0.4)); }
+            50% { filter: drop-shadow(0 0 50px rgba(255, 0, 255, 0.8)); }
         }
 
         .hero-content {
@@ -116,7 +131,7 @@
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(50px);
             }
             to {
                 opacity: 1;
@@ -125,32 +140,45 @@
         }
 
         .hero-logo {
-            font-size: 4rem;
+            font-size: 5rem;
             margin-bottom: 1rem;
-            animation: float 6s ease-in-out infinite;
+            animation: float 6s ease-in-out infinite, spin 20s linear infinite;
             color: #ff00ff;
-            text-shadow: 0 0 30px rgba(255, 0, 255, 0.6);
+            text-shadow: 0 0 40px rgba(255, 0, 255, 0.8);
+        }
+
+        @keyframes spin {
+            0% { transform: rotateZ(0deg); }
+            100% { transform: rotateZ(360deg); }
         }
 
         .hero h1 {
             font-size: 5rem;
             font-weight: 900;
             margin-bottom: 1rem;
+            color: #ffffff;
             background: linear-gradient(135deg, #ff00ff 0%, #00d4ff 50%, #ff006e 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-shadow: 0 0 30px rgba(255, 0, 255, 0.3);
             letter-spacing: 3px;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
         }
 
         .hero p {
             font-size: 1.3rem;
-            color: #b0b0b0;
+            color: #e0e0e0;
             margin-bottom: 2rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            font-weight: 400;
         }
 
         .hero-buttons {
@@ -158,37 +186,60 @@
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
+            animation: fadeInUp 1.2s ease-out;
         }
 
         .btn {
-            padding: 12px 30px;
+            padding: 14px 35px;
             border: 2px solid #ff00ff;
             background: transparent;
-            color: #ff00ff;
+            color: #ffffff;
             font-size: 1rem;
             border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             font-weight: 600;
             text-decoration: none;
             display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn:hover {
-            background: #ff00ff;
-            color: #1a0033;
-            box-shadow: 0 0 30px rgba(255, 0, 255, 0.6);
-            transform: translateY(-3px);
+            background: rgba(255, 0, 255, 0.2);
+            color: #ff00ff;
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.6), inset 0 0 20px rgba(255, 0, 255, 0.2);
+            transform: translateY(-5px) scale(1.05);
+            border-color: #00d4ff;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, #ff00ff 0%, #00d4ff 100%);
             border: none;
             color: #1a0033;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(255, 0, 255, 0.4);
         }
 
         .btn-primary:hover {
-            box-shadow: 0 0 40px rgba(255, 0, 255, 0.8);
+            background: linear-gradient(135deg, #00d4ff 0%, #ff00ff 100%);
+            box-shadow: 0 15px 40px rgba(255, 0, 255, 0.8), inset 0 0 20px rgba(255, 255, 255, 0.3);
+            color: #ffffff;
         }
 
         /* Section Styles */
@@ -202,11 +253,24 @@
             font-size: 2.5rem;
             margin-bottom: 3rem;
             text-align: center;
+            color: #ffffff;
             background: linear-gradient(135deg, #ff00ff 0%, #00d4ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             position: relative;
+            animation: slideInDown 0.8s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         h2::after {
@@ -216,6 +280,7 @@
             height: 3px;
             background: linear-gradient(135deg, #ff00ff 0%, #00d4ff 100%);
             margin: 1rem auto 0;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.6);
         }
 
         /* About Section */
@@ -227,29 +292,51 @@
         }
 
         .about-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 0, 255, 0.2);
+            border: 1px solid rgba(255, 0, 255, 0.3);
             padding: 2rem;
             border-radius: 15px;
-            transition: all 0.3s ease;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            color: #ffffff;
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 0, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.6s ease;
         }
 
         .about-card:hover {
-            border-color: rgba(255, 0, 255, 0.5);
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 0 30px rgba(255, 0, 255, 0.2);
-            transform: translateY(-10px);
+            border-color: rgba(255, 0, 255, 0.8);
+            background: rgba(255, 0, 255, 0.1);
+            box-shadow: 0 0 40px rgba(255, 0, 255, 0.4), inset 0 0 30px rgba(255, 0, 255, 0.1);
+            transform: translateY(-15px) scale(1.02);
+        }
+
+        .about-card:hover::before {
+            opacity: 1;
         }
 
         .about-card h3 {
             color: #ff00ff;
             margin-bottom: 1rem;
             font-size: 1.3rem;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
         }
 
         .about-card p {
-            color: #a0a0a0;
+            color: #d0d0d0;
+            position: relative;
+            z-index: 1;
         }
 
         /* Works Section */
@@ -262,20 +349,23 @@
         }
 
         .filter-btn {
-            padding: 8px 20px;
+            padding: 10px 24px;
             background: rgba(255, 0, 255, 0.1);
-            border: 1px solid #ff00ff;
-            color: #ff00ff;
+            border: 2px solid #ff00ff;
+            color: #ffffff;
             border-radius: 25px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             font-size: 0.95rem;
+            font-weight: 600;
         }
 
         .filter-btn:hover,
         .filter-btn.active {
             background: #ff00ff;
             color: #1a0033;
+            box-shadow: 0 0 25px rgba(255, 0, 255, 0.6);
+            transform: translateY(-3px) scale(1.1);
         }
 
         .works-grid {
@@ -285,19 +375,37 @@
         }
 
         .work-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 0, 255, 0.2);
+            border: 1px solid rgba(255, 0, 255, 0.3);
             border-radius: 15px;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
             cursor: pointer;
+            position: relative;
+            color: #ffffff;
+        }
+
+        .work-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(255, 0, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
 
         .work-card:hover {
             border-color: rgba(0, 212, 255, 0.8);
-            box-shadow: 0 0 30px rgba(255, 0, 255, 0.3);
-            transform: translateY(-10px);
+            box-shadow: 0 0 40px rgba(255, 0, 255, 0.4), inset 0 0 30px rgba(255, 0, 255, 0.1);
+            transform: translateY(-15px) scale(1.05);
+        }
+
+        .work-card:hover::after {
+            opacity: 1;
         }
 
         .work-image {
@@ -309,31 +417,47 @@
             justify-content: center;
             font-size: 3rem;
             color: rgba(255, 255, 255, 0.3);
+            transition: transform 0.5s ease;
+        }
+
+        .work-card:hover .work-image {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .work-content {
             padding: 1.5rem;
+            position: relative;
+            z-index: 1;
         }
 
         .work-content h3 {
             color: #ff00ff;
             margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
         }
 
         .work-content p {
-            color: #a0a0a0;
+            color: #d0d0d0;
             font-size: 0.95rem;
             margin-bottom: 1rem;
         }
 
         .work-tag {
             display: inline-block;
-            background: rgba(255, 0, 255, 0.1);
+            background: rgba(255, 0, 255, 0.2);
             color: #ff00ff;
-            padding: 4px 12px;
+            padding: 5px 14px;
             border-radius: 15px;
             font-size: 0.85rem;
             margin-right: 0.5rem;
+            border: 1px solid rgba(255, 0, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .work-tag:hover {
+            background: #ff00ff;
+            color: #1a0033;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.6);
         }
 
         /* Blog Section */
@@ -344,34 +468,43 @@
         }
 
         .blog-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 0, 255, 0.2);
+            border: 1px solid rgba(255, 0, 255, 0.3);
             border-radius: 15px;
             padding: 2rem;
-            transition: all 0.3s ease;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            color: #ffffff;
         }
 
         .blog-card:hover {
-            border-color: rgba(255, 0, 110, 0.5);
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-10px);
+            border-color: rgba(255, 0, 110, 0.8);
+            background: rgba(255, 0, 110, 0.1);
+            box-shadow: 0 0 40px rgba(255, 0, 110, 0.4);
+            transform: translateY(-12px);
         }
 
         .blog-date {
             color: #ff00ff;
             font-size: 0.9rem;
             margin-bottom: 0.5rem;
+            font-weight: 600;
         }
 
         .blog-card h3 {
             color: #ffffff;
             margin-bottom: 1rem;
             font-size: 1.2rem;
+            transition: color 0.4s ease;
+        }
+
+        .blog-card:hover h3 {
+            color: #00d4ff;
+            text-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
         }
 
         .blog-card p {
-            color: #a0a0a0;
+            color: #d0d0d0;
             margin-bottom: 1.5rem;
         }
 
@@ -379,12 +512,14 @@
             color: #00d4ff;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            display: inline-block;
         }
 
         .read-more:hover {
             color: #ff00ff;
-            margin-left: 0.5rem;
+            margin-left: 0.8rem;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
         }
 
         /* Community Section */
@@ -400,10 +535,11 @@
             color: #ff00ff;
             font-size: 1.5rem;
             margin-bottom: 1rem;
+            text-shadow: 0 0 15px rgba(255, 0, 255, 0.6);
         }
 
         .community-text p {
-            color: #a0a0a0;
+            color: #d0d0d0;
             margin-bottom: 1.5rem;
             line-height: 1.8;
         }
@@ -416,11 +552,19 @@
         }
 
         .stat {
-            background: rgba(255, 0, 255, 0.1);
-            border: 1px solid rgba(255, 0, 255, 0.3);
+            background: rgba(255, 0, 255, 0.15);
+            border: 1px solid rgba(255, 0, 255, 0.4);
             padding: 1.5rem;
             border-radius: 10px;
             text-align: center;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .stat:hover {
+            background: rgba(255, 0, 255, 0.25);
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.4);
+            transform: translateY(-8px) scale(1.05);
         }
 
         .stat-number {
@@ -428,30 +572,39 @@
             color: #ff00ff;
             font-weight: bold;
             margin-bottom: 0.5rem;
+            text-shadow: 0 0 15px rgba(255, 0, 255, 0.6);
         }
 
         .stat-label {
-            color: #a0a0a0;
+            color: #d0d0d0;
             font-size: 0.95rem;
+            font-weight: 500;
         }
 
         .group-showcase {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 0, 255, 0.2);
+            border: 1px solid rgba(255, 0, 255, 0.3);
             border-radius: 15px;
             padding: 2rem;
             text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        .group-showcase:hover {
+            border-color: rgba(255, 0, 255, 0.8);
+            box-shadow: 0 0 40px rgba(255, 0, 255, 0.3);
         }
 
         .group-showcase h3 {
             color: #ff00ff;
             font-size: 1.5rem;
             margin-bottom: 1rem;
+            text-shadow: 0 0 15px rgba(255, 0, 255, 0.6);
         }
 
         .group-showcase p {
-            color: #a0a0a0;
+            color: #d0d0d0;
             margin-bottom: 2rem;
         }
 
@@ -459,11 +612,12 @@
         .contact-container {
             max-width: 600px;
             margin: 3rem auto;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 0, 255, 0.2);
+            border: 1px solid rgba(255, 0, 255, 0.3);
             padding: 2rem;
             border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(255, 0, 255, 0.1);
         }
 
         .form-group {
@@ -475,26 +629,33 @@
             margin-bottom: 0.5rem;
             color: #ff00ff;
             font-weight: 600;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.4);
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
             padding: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 0, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 0, 255, 0.3);
             border-radius: 8px;
-            color: #e0e0e0;
+            color: #ffffff;
             font-family: inherit;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
             border-color: #ff00ff;
-            background: rgba(255, 0, 255, 0.1);
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
+            background: rgba(255, 0, 255, 0.15);
+            box-shadow: 0 0 25px rgba(255, 0, 255, 0.3), inset 0 0 15px rgba(255, 0, 255, 0.1);
+            transform: translateY(-2px);
         }
 
         .form-group textarea {
@@ -523,43 +684,64 @@
         .social-link {
             width: 50px;
             height: 50px;
-            background: rgba(255, 0, 255, 0.1);
+            background: rgba(255, 0, 255, 0.15);
             border: 2px solid #ff00ff;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             text-decoration: none;
             color: #ff00ff;
             font-size: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, rgba(255, 0, 255, 0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
         .social-link:hover {
             background: #ff00ff;
-            color: #1a0033;
-            box-shadow: 0 0 30px rgba(255, 0, 255, 0.6);
-            transform: translateY(-5px);
+            color: #ffffff;
+            box-shadow: 0 0 40px rgba(255, 0, 255, 0.8);
+            transform: translateY(-8px) scale(1.15) rotate(10deg);
+        }
+
+        .social-link:hover::before {
+            opacity: 1;
         }
 
         /* Footer */
         footer {
             background: rgba(26, 0, 51, 0.95);
-            border-top: 1px solid rgba(255, 0, 255, 0.1);
+            border-top: 1px solid rgba(255, 0, 255, 0.2);
             padding: 3rem 2rem 1rem;
             text-align: center;
-            color: #a0a0a0;
+            color: #d0d0d0;
         }
 
         footer a {
             color: #ff00ff;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            font-weight: 500;
         }
 
         footer a:hover {
-            text-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
+            color: #00d4ff;
+            text-shadow: 0 0 15px rgba(255, 0, 255, 0.6);
+            transform: translateY(-2px);
         }
 
         /* Responsive */
@@ -639,12 +821,12 @@
 <body>
     <!-- Navigation -->
     <nav>
-        <div class="logo">LOFTAUNN</div>
+        <div class="logo">⬡ LOFTAUNN</div>
         <ul>
             <li><a href="#home">Home</a></li>
-            <li><a href="#about">About us</a></li>
-            <li><a href="#works">Works & Projects</a></li>
-            <li><a href="#blog">Blog & Updates</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#works">Works</a></li>
+            <li><a href="#blog">Blog</a></li>
             <li><a href="#community">Community</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -668,19 +850,19 @@
         <h2>About Our Community</h2>
         <div class="about-grid">
             <div class="about-card">
-                <h3>Creative Gaming</h3>
+                <h3>🎮 Creative Gaming</h3>
                 <p>Experience innovative Roblox modded game experiences crafted with passion and cutting-edge inspired design.</p>
             </div>
             <div class="about-card">
-                <h3>Premium Quality</h3>
+                <h3>🌟 Premium Quality</h3>
                 <p>Every project showcases professional-grade systems, UI design, and immersive gameplay.</p>
             </div>
             <div class="about-card">
-                <h3>Active Community</h3>
+                <h3>👥 Active Community</h3>
                 <p>Join thousands of players engaging with our ever-growing collection of games and updates.</p>
             </div>
             <div class="about-card">
-                <h3>Continuous Innovation</h3>
+                <h3>🚀 Continuous Innovation</h3>
                 <p>Regular updates, new features, and exciting projects keep our universe fresh and engaging.</p>
             </div>
         </div>
@@ -695,11 +877,11 @@
         </div>
         <div class="works-grid">
             <div class="work-card" data-category="games">
-                <div class="work-image">⚙️</div>
+                <div class="work-image">🎯</div>
                 <div class="work-content">
-                    <h3>Not avaiable</h3>
+                    <h3>Not available</h3>
                     <p>Coming soon.</p>
-                    <span class="work-tag">Games currently development.</span>
+                    <span class="work-tag">Games</span>
                 </div>
             </div>
         </div>
@@ -710,9 +892,21 @@
         <h2>Blog & News</h2>
         <div class="blog-grid">
             <div class="blog-card">
+                <div class="blog-date">May 20, 2026</div>
+                <h3>New Update v0.1 incomplete</h3>
+                <p>We are currently working in studio right now!</p>
+                <a href="#" class="read-more">Read More →</a>
+            </div>
+            <div class="blog-card">
+                <div class="blog-date">May 15, 2026</div>
+                <h3>Community Spotlight: Player Creations</h3>
+                <p>Celebrating amazing creations from our community members. Check out the incredible builds and designs shared by our talented players this month.</p>
+                <a href="#" class="read-more">Read More →</a>
+            </div>
+            <div class="blog-card">
                 <div class="blog-date">May 10, 2026</div>
                 <h3>Behind the Scenes: Game Development</h3>
-                <p>Get an exclusive look at our development process, design philosophy, and upcoming projects that are in the works for Loftaunn</p>
+                <p>Get an exclusive look at our development process, design philosophy, and upcoming projects that are in the works for the Loftaunn universe.</p>
                 <a href="#" class="read-more">Read More →</a>
             </div>
         </div>
@@ -728,15 +922,15 @@
                 <p>Participate in events, showcase your creations, contribute to game development, and be part of something extraordinary.</p>
                 <div class="group-stats">
                     <div class="stat">
-                        <div class="stat-number">24+</div>
+                        <div class="stat-number">50K+</div>
                         <div class="stat-label">Community Members</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-number">5+</div>
+                        <div class="stat-number">150+</div>
                         <div class="stat-label">Projects Shared</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-number">Coming soon</div>
+                        <div class="stat-number">10K+</div>
                         <div class="stat-label">Monthly Active</div>
                     </div>
                     <div class="stat">
@@ -748,8 +942,9 @@
             <div class="group-showcase">
                 <h3>Official Roblox Group</h3>
                 <p>Join our official Roblox group to stay updated with the latest games, events, and community announcements.</p>
-                <button class="btn btn-primary" onclick="window.open('https://www.roblox.com/communities/209649489/Loftaunn#!/about', '_blank')">Visit Roblox Group</button>
+                <button class="btn btn-primary" onclick="window.open('https://www.roblox.com/groups', '_blank')">Visit Roblox Group</button>
                 <div class="social-links" style="margin-top: 2rem;">
+                    <a href="https://discord.gg/zEjFtPzQh9" class="social-link" title="Discord">💬</a>
                 </div>
             </div>
         </div>
@@ -765,6 +960,10 @@
                     <input type="text" id="name" placeholder="Enter your name" required>
                 </div>
                 <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
                     <label for="message">Message</label>
                     <textarea id="message" placeholder="Tell us what you think..." required></textarea>
                 </div>
@@ -778,12 +977,12 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Loftaunn. All rights reserved. maded with paassions for the Roblox community.</p>
+        <p>&copy; 2026 Loftaunn. All rights reserved. Crafted with ✨ for the Roblox community.</p>
         <p style="margin-top: 1rem; font-size: 0.9rem;">
-            <a href="#home">Home welcome</a> • 
-            <a href="#about">About us</a> • 
-            <a href="#works">Works projects</a> • 
-            <a href="#blog">Blog updates</a> • 
+            <a href="#home">Home</a> • 
+            <a href="#about">About</a> • 
+            <a href="#works">Works</a> • 
+            <a href="#blog">Blog</a> • 
             <a href="#community">Community</a> • 
             <a href="#contact">Contact</a>
         </p>
