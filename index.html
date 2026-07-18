@@ -13,10 +13,12 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a0033 0%, #4d0099 50%, #ff00ff 100%);
+            background: radial-gradient(ellipse at center, #6a00b8 0%, #4b0078 25%, #220033 60%, #170021 100%);
+            background-attachment: fixed;
             color: #ffffff;
             line-height: 1.6;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
         /* Navigation */
@@ -24,15 +26,15 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(26, 0, 51, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 0, 255, 0.3);
+            background: rgba(23, 0, 33, 0.8);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(106, 0, 184, 0.4);
             z-index: 1000;
             padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 30px rgba(255, 0, 255, 0.1);
+            box-shadow: 0 4px 40px rgba(106, 0, 184, 0.15);
         }
 
         nav .logo {
@@ -52,7 +54,7 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1rem;
         }
 
         nav a {
@@ -62,28 +64,21 @@
             transition: all 0.4s ease;
             position: relative;
             font-weight: 500;
+            padding: 10px 18px;
+            background: rgba(0, 255, 120, 0.12);
+            border: 1px solid rgba(0, 255, 120, 0.35);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            display: inline-block;
+            box-shadow: 0 0 15px rgba(0, 255, 120, 0.1);
         }
 
         nav a:hover {
-            color: #ff00ff;
-            text-shadow: 0 0 15px rgba(255, 0, 255, 0.8);
-            transform: translateY(-3px);
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #ff00ff, #00d4ff);
-            transition: width 0.4s ease;
-            box-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
-        }
-
-        nav a:hover::after {
-            width: 100%;
+            background: rgba(0, 255, 120, 0.22);
+            color: #00ff78;
+            box-shadow: 0 0 25px rgba(0, 255, 120, 0.35), inset 0 0 15px rgba(0, 255, 120, 0.1);
+            transform: translateY(-3px) scale(1.05);
+            border-color: rgba(0, 255, 120, 0.6);
         }
 
         /* Hero Section */
@@ -93,32 +88,23 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, rgba(255, 0, 255, 0.15) 0%, rgba(77, 0, 153, 0.15) 100%);
             position: relative;
             overflow: hidden;
+            background: radial-gradient(ellipse 600px 600px at center, rgba(106, 0, 184, 0.2) 0%, rgba(75, 0, 120, 0.1) 40%, transparent 70%);
         }
 
         .hero::before {
             content: '';
             position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(255, 0, 255, 0.3) 0%, transparent 70%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(106, 0, 184, 0.25) 0%, rgba(107, 0, 255, 0.1) 35%, transparent 70%);
             border-radius: 50%;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            animation: float 8s ease-in-out infinite, glow 4s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
-            50% { transform: translate(-50%, -50%) translateY(40px); }
-        }
-
-        @keyframes glow {
-            0%, 100% { filter: drop-shadow(0 0 20px rgba(255, 0, 255, 0.4)); }
-            50% { filter: drop-shadow(0 0 50px rgba(255, 0, 255, 0.8)); }
+            z-index: 1;
+            filter: blur(40px);
         }
 
         .hero-content {
@@ -126,6 +112,10 @@
             position: relative;
             z-index: 10;
             animation: fadeInUp 1s ease-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
         }
 
         @keyframes fadeInUp {
@@ -139,46 +129,39 @@
             }
         }
 
-        .hero-logo {
-            font-size: 5rem;
-            margin-bottom: 1rem;
-            animation: float 6s ease-in-out infinite, spin 20s linear infinite;
-            color: #ff00ff;
-            text-shadow: 0 0 40px rgba(255, 0, 255, 0.8);
+        .hero-logo-img {
+            max-width: 500px;
+            width: 90%;
+            height: auto;
+            filter: drop-shadow(0 0 60px rgba(106, 0, 184, 0.4)) drop-shadow(0 0 30px rgba(255, 0, 255, 0.3));
+            animation: float 6s ease-in-out infinite;
         }
 
-        @keyframes spin {
-            0% { transform: rotateZ(0deg); }
-            100% { transform: rotateZ(360deg); }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
         }
 
         .hero h1 {
             font-size: 5rem;
             font-weight: 900;
-            margin-bottom: 1rem;
+            margin: 0;
             color: #ffffff;
             background: linear-gradient(135deg, #ff00ff 0%, #00d4ff 50%, #ff006e 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 30px rgba(255, 0, 255, 0.3);
             letter-spacing: 3px;
-            animation: shimmer 3s ease-in-out infinite;
-        }
-
-        @keyframes shimmer {
-            0%, 100% { filter: brightness(1); }
-            50% { filter: brightness(1.2); }
+            display: none;
         }
 
         .hero p {
             font-size: 1.3rem;
             color: #e0e0e0;
-            margin-bottom: 2rem;
             max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0;
             font-weight: 400;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         .hero-buttons {
@@ -187,6 +170,7 @@
             justify-content: center;
             flex-wrap: wrap;
             animation: fadeInUp 1.2s ease-out;
+            margin-top: 1rem;
         }
 
         .btn {
@@ -747,8 +731,13 @@
         /* Responsive */
         @media (max-width: 768px) {
             nav ul {
-                gap: 1rem;
-                font-size: 0.9rem;
+                gap: 0.5rem;
+                font-size: 0.85rem;
+            }
+
+            nav a {
+                padding: 8px 12px;
+                font-size: 0.85rem;
             }
 
             .hero h1 {
@@ -757,6 +746,10 @@
 
             .hero p {
                 font-size: 1.1rem;
+            }
+
+            .hero-logo-img {
+                max-width: 400px;
             }
 
             .community-content {
@@ -785,6 +778,8 @@
         @media (max-width: 480px) {
             nav {
                 padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
             }
 
             nav .logo {
@@ -804,16 +799,16 @@
                 font-size: 1rem;
             }
 
+            .hero-logo-img {
+                max-width: 300px;
+            }
+
             section {
                 padding: 3rem 1rem;
             }
 
             .group-stats {
                 grid-template-columns: 1fr;
-            }
-
-            .hero-logo {
-                font-size: 2.5rem;
             }
         }
     </style>
@@ -835,8 +830,7 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <div class="hero-logo">⬡</div>
-            <h1>LOFTAUNN</h1>
+            <img src="logo-main.png" alt="LOFTAUNN Logo" class="hero-logo-img">
             <p>A roblox modded game community</p>
             <div class="hero-buttons">
                 <a href="#works" class="btn btn-primary">Explore Works</a>
@@ -998,11 +992,11 @@
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
 
-                const filter = btn.dataset.filter;
+                const filter = btn.getAttribute('data-filter');
+
                 workCards.forEach(card => {
-                    if (filter === 'all' || card.dataset.category === filter) {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
                         card.style.display = 'block';
-                        setTimeout(() => card.style.opacity = '1', 10);
                     } else {
                         card.style.display = 'none';
                     }
@@ -1011,28 +1005,10 @@
         });
 
         // Form submission
-        document.querySelector('form').addEventListener('submit', (e) => {
+        document.querySelector('form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your message! We\'ll get back to you soon.');
-            document.querySelector('form').reset();
-        });
-
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.about-card, .work-card, .blog-card').forEach(el => {
-            observer.observe(el);
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
         });
     </script>
 </body>
