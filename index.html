@@ -37,19 +37,31 @@
             box-shadow: 0 4px 40px rgba(106, 0, 184, 0.15);
         }
 
-        nav .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #ff00ff;
-            text-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
-            letter-spacing: 2px;
-            animation: pulse 2s ease-in-out infinite;
-        }
+      nav .logo {
+    display: flex;
+    align-items: center;
+}
 
-        @keyframes pulse {
-            0%, 100% { text-shadow: 0 0 20px rgba(255, 0, 255, 0.8); }
-            50% { text-shadow: 0 0 40px rgba(255, 0, 255, 1); }
-        }
+nav .logo img {
+    height: 48px;
+    width: auto;
+    filter: drop-shadow(0 0 15px rgba(255, 0, 255, 0.8));
+    animation: pulseLogo 2s ease-in-out infinite;
+    transition: transform 0.3s ease;
+}
+
+nav .logo img:hover {
+    transform: scale(1.05);
+}
+
+@keyframes pulseLogo {
+    0%, 100% {
+        filter: drop-shadow(0 0 15px rgba(255, 0, 255, 0.8));
+    }
+    50% {
+        filter: drop-shadow(0 0 30px rgba(255, 0, 255, 1));
+    }
+}
 
         nav ul {
             display: flex;
@@ -816,7 +828,9 @@
 <body>
     <!-- Navigation -->
     <nav>
-        <img src="Loftaunn2Logo.png" class="navigation-logo-img">
+        <div class="logo">
+    <img src="Loftaunn1Logo.png" class="navbar-logo">
+</div>
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About Us</a></li>
